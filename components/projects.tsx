@@ -10,9 +10,9 @@ export function Projects() {
         "Plataforma de comercio electrónico con carrito de compras, gestión de productos y de usuarios",
       technologies: ["React", "C#", ".NET", "SqlServer"],
       developers: ["Juan Manuel López Asis", "Maximiliano Vega"],
-      github: "https://github.com/JuanLopezAsis27/Ecommerce",
-      demo: "https://demo.com",
-      image: "/modern-ecommerce-dashboard.png",
+      github: "https://github.com/JuanLopezAsis27/Ecommerce.git",
+      demo: "https://drive.google.com/file/d/1PFvYKoa-us6FSAEPlxxyZaHrAFvQNk8N/view?usp=sharing",
+      image: "/ecommerce.png",
     },
     {
       title: "Web para Restaurante - Reservas",
@@ -49,6 +49,14 @@ export function Projects() {
       github: "https://github.com/PulidoLuciano/WyvernSRL.git",
       demo: "https://entrerriana.com.ar/",
       image: "/laentrerriana.png",
+    },
+    {
+      title: "Chatbot con agente IA - Asistente Virtual - Empresa: 'Don pollo'",
+      description: "Chatbot con agente IA para la empresa 'Don Pollo' que ayuda a los usuarios a realizar pedidos desde Whatsapp de manera automatizada",
+      technologies: ["n8n", "WhatsApp Business API", "Supabase", "MongoDB"],
+      developers: ["Juan Manuel López Asis",],
+      demo: "https://drive.google.com/file/d/1XXesAs6WnKF4lFSd1gw-bnsydSBYbbst/view?usp=sharing",
+      image: "/chatbot.png",
     },
   ]
 
