@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: "Juan Manuel Lopez Asis | Desarrollador de Software",
   description:
     "Portfolio profesional de Juan Manuel Lopez Asis, desarrollador de software. Explora mis proyectos, habilidades y experiencia en desarrollo web y aplicaciones.",
-  generator: "v0.app",
   icons: {
     icon: [
       {
