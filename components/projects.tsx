@@ -25,14 +25,6 @@ export function Projects() {
       image: "/restaurante.png",
     },
     {
-      title: "Web creada con WordPress",
-      description: "Web creada con el CMS WordPress que permite gestionar contenido fácilmente, usando temas y plugins para personalizarlo facilmente",
-      technologies: ["WordPress", "PHP"],
-      developers: ["Juan Manuel López Asis"],
-      demo: "https://srv1175174.hstgr.cloud/",
-      image: "/wordpress.png",
-    },
-    {
       title: "Gestion interna para empresa de desarrollo de videojuegos",
       description: "Herramienta interna para gestionar proyectos, usuarios, plataformas y empleados en una empresa de desarrollo de videojuegos",
       technologies: ["Node.js", "TypeScript", "MySQL", "React", "Docker" ],
