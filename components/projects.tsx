@@ -25,6 +25,15 @@ export function Projects() {
       image: "/restaurante.png",
     },
     {
+      title: "Landing Page - La Entrerriana",
+      description: "Landing page para la empresa 'La Entrerriana'",
+      technologies: ["JavaScript", "HTML", "CSS"],
+      developers: ["Juan Manuel López Asis",],
+      github: "https://github.com/PulidoLuciano/WyvernSRL.git",
+      demo: "https://entrerriana.com.ar/",
+      image: "/laentrerriana.png",
+    },
+    {
       title: "Plataforma E-commerce",
       description:
         "Plataforma de comercio electrónico con carrito de compras, gestión de productos y de usuarios",
@@ -42,15 +51,6 @@ export function Projects() {
       github: "https://github.com/PulidoLuciano/WyvernSRL.git",
       demo: "https://drive.google.com/file/d/1n-pktFZgnw565uO6tJgTFwlYXIZsrkeU/view?usp=sharing",
       image: "/wyvern.png",
-    },
-    {
-      title: "Landing Page - La Entrerriana",
-      description: "Landing page para la empresa 'La Entrerriana'",
-      technologies: ["JavaScript", "HTML", "CSS"],
-      developers: ["Juan Manuel López Asis",],
-      github: "https://github.com/PulidoLuciano/WyvernSRL.git",
-      demo: "https://entrerriana.com.ar/",
-      image: "/laentrerriana.png",
     },
     {
       title: "Chatbot con agente IA - Asistente Virtual - Empresa: 'Don pollo'",
