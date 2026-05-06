@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Manuel López Asis | Desarrollador de Software</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: oklch(0.15 0.02 250);
+      --foreground: oklch(0.92 0.01 250);
+      --card: oklch(0.18 0.025 245);
+      --primary: oklch(0.65 0.15 195);
+      --primary-foreground: oklch(0.98 0.01 250);
+      --secondary: oklch(0.22 0.03 245);
+      --secondary-foreground: oklch(0.92 0.01 250);
+      --muted: oklch(0.25 0.03 245);
+      --muted-foreground: oklch(0.55 0.02 245);
+      --border: oklch(0.25 0.03 245);
+      --chart-2: oklch(0.7 0.18 285);
+      --radius: 0.75rem;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Geist", system-ui, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    .container { width: 100%; max-width: 64rem; margin: 0 auto; padding: 0 1rem; }
+    .container-lg { max-width: 72rem; }
+    .container-sm { max-width: 56rem; }
+
+    section { padding: 6rem 1rem; }
+    .min-h-screen { min-height: 100vh; }
+    .text-center { text-align: center; }
+
+    /* Hero */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 1rem;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom right, rgba(78, 180, 210, 0.15), transparent, rgba(155, 120, 200, 0.1));
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem 0;
+    }
+    .hero h1 span { display: block; color: var(--primary); }
+    .hero-subtitle {
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      color: var(--muted-foreground);
+      max-width: 42rem;
+      margin: 0 auto 2rem;
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+    .btn-primary { background: var(--primary); color: var(--primary-foreground); }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-outline {
+      background: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .social-links a {
+      color: var(--muted-foreground);
+      transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--primary); }
+    .icon { width: 1.5rem; height: 1.5rem; }
+
+    /* Section titles */
+    .section-title {
+      font-size: clamp(1.875rem, 4vw, 2.25rem);
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+    }
+    .section-bar {
+      height: 4px;
+      width: 5rem;
+      background: var(--primary);
+      border-radius: 9999px;
+      margin-bottom: 3rem;
+    }
+    .section-bar-center { margin-left: auto; margin-right: auto; }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { border-color: color-mix(in oklch, var(--primary) 50%, transparent); }
+    .card-shadow:hover { box-shadow: 0 10px 40px -10px oklch(0.65 0.15 195 / 0.2); }
+
+    /* Grid */
+    .grid-2 {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* About */
+    .card h3 { font-size: 1.5rem; font-weight: 600; margin: 0 0 1rem 0; }
+    .card p { color: var(--muted-foreground); margin: 0; }
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--muted-foreground);
+      margin-top: 0.75rem;
+    }
+    .info-row .icon { color: var(--primary); flex-shrink: 0; }
+    .timeline-item {
+      border-left: 2px solid var(--primary);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .timeline-item h4 { font-weight: 600; margin: 0 0 0.25rem 0; }
+    .timeline-item .meta { font-size: 0.875rem; color: var(--muted-foreground); }
+
+    /* Skills */
+    #skills { background: color-mix(in oklch, var(--secondary) 30%, transparent); }
+    .skill-category h3 { color: var(--primary); font-size: 1.25rem; }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .badge {
+      font-size: 0.875rem;
+      padding: 0.25rem 0.75rem;
+      background: var(--muted);
+      border-radius: var(--radius);
+      color: var(--secondary-foreground);
+    }
+    .badge:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* Projects */
+    .project-card {
+      overflow: hidden;
+      padding: 0;
+    }
+    .project-card .card { padding: 0; }
+    .project-img {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--muted);
+    }
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .project-card:hover .project-img img { transform: scale(1.05); }
+    .project-body { padding: 1.5rem; }
+    .project-body h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .project-labels { font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.5rem; }
+    .project-badges { margin-top: 0.25rem; }
+    .project-badges .badge { font-size: 0.75rem; padding: 0.125rem 0.5rem; }
+    .project-actions { display: flex; gap: 0.75rem; margin-top: 1rem; }
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.875rem; }
+
+    /* Contact */
+    #contact { background: color-mix(in oklch, var(--secondary) 30%, transparent); }
+    .contact-card { background: linear-gradient(to bottom right, rgba(78, 180, 210, 0.15), rgba(155, 120, 200, 0.08)); }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--primary); }
+    .icon-box {
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      background: rgba(78, 180, 210, 0.15);
+    }
+    .social-box {
+      display: flex;
+      gap: 1rem;
+    }
+    .social-box a {
+      padding: 0.75rem;
+      border-radius: var(--radius);
+      background: var(--muted);
+      color: var(--foreground);
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-box a:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* Footer */
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
+    }
+    .footer p { text-align: center; font-size: 0.875rem; color: var(--muted-foreground); }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Hero -->
+    <section id="hero">
+      <div class="container hero-content">
+        <div class="hero text-center">
+          <h1>Desarrollador<br><span>De Software</span></h1>
+          <p class="hero-subtitle">Creando experiencias digitales innovadoras y eficientes.</p>
+          <div class="btn-group">
+            <a href="#contact" class="btn btn-primary">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Contactar
+            </a>
+            <a href="#projects" class="btn btn-outline">Ver Proyectos</a>
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/JuanLopezAsis27" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/juan-lopez-asis-02ab33285" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">Sobre mí</h2>
+        <div class="section-bar"></div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Juan Manuel López Asis</h3>
+            <p>Desarrollador de software apasionado por crear soluciones digitales elegantes y eficientes. Siempre en busca de aprender nuevas tecnologías y mejorar mis habilidades para ofrecer el mejor valor en cada proyecto.</p>
+            <div class="info-row">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>23 años</span>
+            </div>
+            <div class="info-row">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Tucumán, Argentina</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Experiencia</h3>
+            <div class="timeline-item">
+              <h4>Desarrollador Freelancer</h4>
+              <span class="meta">2023 - Presente</span>
+            </div>
+            <div class="timeline-item">
+              <h4>Estudiante - Ingeniería en sistemas - 4to año</h4>
+              <p class="meta">UTN - FRT</p>
+            </div>
+            <div class="timeline-item">
+              <h4>Desarrollador Junior</h4>
+              <span class="meta">2025 - Presente</span>
+              <p class="meta">Waichatt</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Habilidades</h2>
+        <div class="section-bar"></div>
+        <div class="grid-2">
+          <div class="card skill-category">
+            <h3>Frontend</h3>
+            <div class="badges">
+              <span class="badge">React</span>
+              <span class="badge">JavaScript</span>
+              <span class="badge">TypeScript</span>
+              <span class="badge">HTML</span>
+              <span class="badge">CSS</span>
+            </div>
+          </div>
+          <div class="card skill-category">
+            <h3>Backend</h3>
+            <div class="badges">
+              <span class="badge">Node.js</span>
+              <span class="badge">.NET</span>
+              <span class="badge">C#</span>
+              <span class="badge">MongoDB</span>
+              <span class="badge">MySQL</span>
+            </div>
+          </div>
+          <div class="card skill-category">
+            <h3>DevOps &amp; Tools</h3>
+            <div class="badges">
+              <span class="badge">Git</span>
+              <span class="badge">Docker</span>
+            </div>
+          </div>
+          <div class="card skill-category">
+            <h3>Otros</h3>
+            <div class="badges">
+              <span class="badge">Automatizaciones con n8n</span>
+              <span class="badge">Chatbots con n8n</span>
+              <span class="badge">Agile</span>
+              <span class="badge">REST APIs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container container-lg">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <div class="section-bar"></div>
+        <div class="grid-2">
+          <article class="project-card">
+            <div class="card card-shadow">
+              <div class="project-img">
+                <img src="ecommerce.png" alt="Plataforma E-commerce" onerror="this.src='https://placehold.co/600x400/1a1f2e/4fc3f7?text=E-commerce'">
+              </div>
+              <div class="project-body">
+                <h3>Plataforma E-commerce</h3>
+                <p class="project-labels">Plataforma de comercio electrónico con carrito de compras, gestión de productos y de usuarios</p>
+                <p class="project-labels">Tecnologías:</p>
+                <div class="project-badges">
+                  <span class="badge">React</span>
+                  <span class="badge">C#</span>
+                  <span class="badge">.NET</span>
+                  <span class="badge">SqlServer</span>
+                </div>
+                <p class="project-labels">Desarrolladores: Juan Manuel López Asis, Maximiliano Vega</p>
+                <div class="project-actions">
+                  <a href="https://github.com/JuanLopezAsis27/Ecommerce.git" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Código</a>
+                  <a href="https://drive.google.com/file/d/1PFvYKoa-us6FSAEPlxxyZaHrAFvQNk8N/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="card card-shadow">
+              <div class="project-img">
+                <img src="restaurante.png" alt="Web para Restaurante" onerror="this.src='https://placehold.co/600x400/1a1f2e/4fc3f7?text=Restaurante'">
+              </div>
+              <div class="project-body">
+                <h3>Web para Restaurante - Reservas</h3>
+                <p class="project-labels">Aplicación web para restaurante que permite a los clientes hacer reservas y al Admin gestionar los usuarios creados y las reservas</p>
+                <p class="project-labels">Tecnologías:</p>
+                <div class="project-badges">
+                  <span class="badge">React</span>
+                  <span class="badge">Node.js</span>
+                  <span class="badge">MongoDB</span>
+                </div>
+                <p class="project-labels">Desarrolladores: Juan Manuel López Asis</p>
+                <div class="project-actions">
+                  <a href="https://github.com/JuanLopezAsis27/Restaurante-frontend.git" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Código</a>
+                  <a href="https://restaurante-frontend-ten.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="card card-shadow">
+              <div class="project-img">
+                <img src="wyvern.png" alt="Gestión interna videojuegos" onerror="this.src='https://placehold.co/600x400/1a1f2e/4fc3f7?text=Wyvern'">
+              </div>
+              <div class="project-body">
+                <h3>Gestión interna para empresa de desarrollo de videojuegos</h3>
+                <p class="project-labels">Herramienta interna para gestionar proyectos, usuarios, plataformas y empleados en una empresa de desarrollo de videojuegos</p>
+                <p class="project-labels">Tecnologías:</p>
+                <div class="project-badges">
+                  <span class="badge">Node.js</span>
+                  <span class="badge">TypeScript</span>
+                  <span class="badge">MySQL</span>
+                  <span class="badge">React</span>
+                  <span class="badge">Docker</span>
+                </div>
+                <p class="project-labels">Desarrolladores: Juan Manuel López Asis, Sarco Felipe Raul, Pulido Luciano Nicolas</p>
+                <div class="project-actions">
+                  <a href="https://github.com/PulidoLuciano/WyvernSRL.git" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Código</a>
+                  <a href="https://drive.google.com/file/d/1n-pktFZgnw565uO6tJgTFwlYXIZsrkeU/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="card card-shadow">
+              <div class="project-img">
+                <img src="laentrerriana.png" alt="Landing La Entrerriana" onerror="this.src='https://placehold.co/600x400/1a1f2e/4fc3f7?text=La+Entrerriana'">
+              </div>
+              <div class="project-body">
+                <h3>Landing Page - La Entrerriana</h3>
+                <p class="project-labels">Landing page para la empresa 'La Entrerriana'</p>
+                <p class="project-labels">Tecnologías:</p>
+                <div class="project-badges">
+                  <span class="badge">JavaScript</span>
+                  <span class="badge">HTML</span>
+                  <span class="badge">CSS</span>
+                </div>
+                <p class="project-labels">Desarrolladores: Juan Manuel López Asis</p>
+                <div class="project-actions">
+                  <a href="https://github.com/PulidoLuciano/WyvernSRL.git" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Código</a>
+                  <a href="https://entrerriana.com.ar/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="card card-shadow">
+              <div class="project-img">
+                <img src="chatbot.png" alt="Chatbot Don Pollo" onerror="this.src='https://placehold.co/600x400/1a1f2e/4fc3f7?text=Chatbot'">
+              </div>
+              <div class="project-body">
+                <h3>Chatbot con agente IA - Asistente Virtual - Empresa: 'Don pollo'</h3>
+                <p class="project-labels">Chatbot con agente IA para la empresa 'Don Pollo' que ayuda a los usuarios a realizar pedidos desde Whatsapp de manera automatizada</p>
+                <p class="project-labels">Tecnologías:</p>
+                <div class="project-badges">
+                  <span class="badge">n8n</span>
+                  <span class="badge">WhatsApp Business API</span>
+                  <span class="badge">Supabase</span>
+                  <span class="badge">MongoDB</span>
+                </div>
+                <p class="project-labels">Desarrolladores: Juan Manuel López Asis</p>
+                <div class="project-actions">
+                  <a href="https://drive.google.com/file/d/1XXesAs6WnKF4lFSd1gw-bnsydSBYbbst/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Demo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container container-sm">
+        <div class="text-center">
+          <h2 class="section-title">Hablemos</h2>
+          <div class="section-bar section-bar-center"></div>
+          <p style="color: var(--muted-foreground); max-width: 42rem; margin: 0 auto 3rem;">Estoy siempre abierto a nuevas oportunidades y colaboraciones. No dudes en contactarme.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Información de Contacto</h3>
+            <a href="mailto:juan.lopezasis27@hotmail.com" class="contact-link">
+              <div class="icon-box">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <span>juan.lopezasis27@hotmail.com</span>
+            </a>
+            <h4 style="font-weight: 600; margin-top: 1.5rem;">Redes Sociales</h4>
+            <div class="social-box" style="margin-top: 0.75rem;">
+              <a href="https://github.com/JuanLopezAsis27" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/juan-lopez-asis-02ab33285" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="card contact-card">
+            <h3>¿Listo para colaborar?</h3>
+            <p>Si tienes un proyecto en mente o simplemente quieres charlar sobre tecnología, estaré encantado de escucharte.</p>
+            <a href="mailto:juan.lopezasis27@hotmail.com" class="btn btn-primary" style="margin-top: 1rem; width: 100%; justify-content: center;">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Enviar Mensaje
+            </a>
+          </div>
+        </div>
+        <div class="footer">
+          <p>© 2025 Juan Manuel López Asis. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

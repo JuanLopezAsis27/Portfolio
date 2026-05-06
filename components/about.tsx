@@ -22,10 +22,7 @@ export function About() {
               </div>
 
               <div className="space-y-3">
-                <div className="flex items-center gap-3 text-muted-foreground">
-                  <Calendar className="w-5 h-5 text-primary" />
-                  <span>23 años</span>
-                </div>
+
                 <div className="flex items-center gap-3 text-muted-foreground">
                   <MapPin className="w-5 h-5 text-primary" />
                   <span>Tucumán, Argentina</span>
@@ -42,13 +39,6 @@ export function About() {
                     <h4 className="font-semibold">Desarrollador Freelancer</h4>
                     <span className="text-sm text-muted-foreground">2023 - Presente</span>
                   </div>
-                </div>
-
-                <div className="space-y-2 border-l-2 border-primary pl-4">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-semibold">Estudiante - Ingenieria en sistemas - 4to año</h4>
-                  </div>
-                  <p className="text-sm text-muted-foreground">UTN - FRT </p>
                 </div>
 
                 <div className="space-y-2 border-l-2 border-primary pl-4">

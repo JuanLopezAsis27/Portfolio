@@ -4,25 +4,35 @@ import { ExternalLink, Github } from "lucide-react"
 
 export function Projects() {
   const projects = [
-    {
-      title: "Plataforma E-commerce",
+   {
+      title: "Web para Instituto Anglo",
       description:
-        "Plataforma de comercio electrónico con carrito de compras, gestión de productos y de usuarios",
-      technologies: ["React", "C#", ".NET", "SqlServer"],
-      developers: ["Juan Manuel López Asis", "Maximiliano Vega"],
-      github: "https://github.com/JuanLopezAsis27/Ecommerce.git",
-      demo: "https://drive.google.com/file/d/1PFvYKoa-us6FSAEPlxxyZaHrAFvQNk8N/view?usp=sharing",
-      image: "/ecommerce.png",
+        "Aplicación web para instituto de ingles que permite a los estudiantes acceder a información académica",
+      technologies: ["Next.js", "Node.js", "Tailwind CSS"],
+      developers: ["Juan Manuel López Asis"],
+      github: "https://github.com/JuanLopezAsis27/anglo.git",
+      demo: "https://anglo-hfbt.vercel.app/",
+      image: "/anglo.png",
     },
     {
       title: "Web para Restaurante - Reservas",
       description:
         "Aplicación web para restaurante que permite a los clientes hacer reservas y al Admin gestionar los usuarios creados y las reservas",
-      technologies: ["React", "Node.js", "MongoDB", ],
+      technologies: ["React", "Node.js", "MongoDB","Tailwind CSS" ],
       developers: ["Juan Manuel López Asis"],
       github: "https://github.com/JuanLopezAsis27/Restaurante-frontend.git",
       demo: "https://restaurante-frontend-ten.vercel.app/",
       image: "/restaurante.png",
+    },
+    {
+      title: "Plataforma E-commerce",
+      description:
+        "Plataforma de comercio electrónico con carrito de compras, gestión de productos y de usuarios",
+      technologies: ["React", "C#", ".NET", "SqlServer"],
+      developers: ["Juan Manuel López Asis"],
+      github: "https://github.com/JuanLopezAsis27/Ecommerce.git",
+      demo: "https://drive.google.com/file/d/1PFvYKoa-us6FSAEPlxxyZaHrAFvQNk8N/view?usp=sharing",
+      image: "/ecommerce.png",
     },
     {
       title: "Gestion interna para empresa de desarrollo de videojuegos",
